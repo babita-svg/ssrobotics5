@@ -1,37 +1,28 @@
 const express = require("express")
-const bodyParser = require("body-parser")
-const cors = require("cors")
 const path = require("path")
-
-const connectDB = require("./config/db")
-
-const productRoutes = require("./routes/productRoutes")
-const authRoutes = require("./routes/authRoutes")
 
 const app = express()
 
-connectDB()
+// Serve static files
+app.use(express.static(path.join(__dirname, "public")))
 
-app.use(cors())
-app.use(bodyParser.json())
-
-app.use(express.static("public"))
-
-app.use("/api/products",productRoutes)
-app.use("/api/auth",authRoutes)
-
-app.get("/",(req,res)=>{
-res.sendFile(path.join(__dirname,"views","index.html"))
+// Home route
+app.get("/", (req,res)=>{
+    res.sendFile(path.join(__dirname, "views", "index.html"))
 })
 
-app.get("/admin",(req,res)=>{
-res.sendFile(path.join(__dirname,"views","admin.html"))
+// Cart page
+app.get("/cart", (req,res)=>{
+    res.sendFile(path.join(__dirname, "views", "cart.html"))
 })
 
-app.get("/login",(req,res)=>{
-res.sendFile(path.join(__dirname,"views","login.html"))
+// Admin page
+app.get("/admin", (req,res)=>{
+    res.sendFile(path.join(__dirname, "views", "admin.html"))
 })
 
-app.listen(3000,()=>{
-console.log("SS Robotics Ultimate Server Running")
+const PORT = process.env.PORT || 3000
+
+app.listen(PORT, ()=>{
+    console.log("Server running 🚀")
 })
