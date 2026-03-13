@@ -1,60 +1,75 @@
 <!DOCTYPE html>
 <html>
-
 <head>
+    <title>SS Robotics Store</title>
 
-<title>SS Robotics</title>
+    <style>
 
-<link rel="stylesheet" href="/css/style.css">
+        body{
+            font-family: Arial;
+            margin:0;
+            background:#f5f5f5;
+        }
 
-<script src="/js/cart.js"></script>
+        header{
+            background:#111;
+            color:white;
+            padding:15px;
+            font-size:24px;
+        }
 
+        .products{
+            display:flex;
+            gap:20px;
+            padding:20px;
+        }
+
+        .card{
+            background:white;
+            padding:15px;
+            border-radius:10px;
+            width:200px;
+            box-shadow:0 0 10px rgba(0,0,0,0.1);
+        }
+
+        button{
+            background:#ff9800;
+            border:none;
+            padding:10px;
+            color:white;
+            cursor:pointer;
+        }
+
+    </style>
 </head>
 
 <body>
 
 <header>
-
-<h1>SS Robotics Store</h1>
-
+🤖 SS Robotics Store
 </header>
 
-<div class="products" id="products"></div>
+<div class="products">
 
-<script>
+<div class="card">
+<h3>Arduino Uno</h3>
+<p>₹499</p>
+<button>Add to Cart</button>
+</div>
 
-fetch("/api/products")
+<div class="card">
+<h3>Ultrasonic Sensor</h3>
+<p>₹120</p>
+<button>Add to Cart</button>
+</div>
 
-.then(res=>res.json())
-
-.then(data=>{
-
-const container=document.getElementById("products")
-
-data.forEach(p=>{
-
-container.innerHTML+=`
-
-<div class="product">
-
-<img src="${p.image}" width="150">
-
-<h3>${p.name}</h3>
-
-<p>₹${p.price}</p>
-
-<button onclick="addToCart('${p.name}',${p.price})">Add to Cart</button>
+<div class="card">
+<h3>Robot Car Kit</h3>
+<p>₹899</p>
+<button>Add to Cart</button>
+</div>
 
 </div>
 
-`
-
-})
-
-})
-
-</script>
-
 </body>
-
 </html>
