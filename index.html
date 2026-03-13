@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>SS Robotics</title>
+
+<link rel="stylesheet" href="/css/style.css">
+
+<script src="/js/cart.js"></script>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>SS Robotics Store</h1>
+
+</header>
+
+<div class="products" id="products"></div>
+
+<script>
+
+fetch("/api/products")
+
+.then(res=>res.json())
+
+.then(data=>{
+
+const container=document.getElementById("products")
+
+data.forEach(p=>{
+
+container.innerHTML+=`
+
+<div class="product">
+
+<img src="${p.image}" width="150">
+
+<h3>${p.name}</h3>
+
+<p>₹${p.price}</p>
+
+<button onclick="addToCart('${p.name}',${p.price})">Add to Cart</button>
+
+</div>
+
+`
+
+})
+
+})
+
+</script>
+
+</body>
+
+</html>
